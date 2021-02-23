@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkenzo-s <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gkenzo-s <gkenzo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 12:23:46 by gkenzo-s          #+#    #+#             */
-/*   Updated: 2020/03/04 13:07:18 by gkenzo-s         ###   ########.fr       */
+/*   Updated: 2021/02/04 16:01:46 by gkenzo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,6 @@ int					maximum(int arg_size, ...);
 void				ft_putchar(char c);
 void				ft_putstr(char *str);
 void				print_multiple_char(int i, char c);
+int					ft_pow(int n, int exp);
+char				*ft_ftoa(float n, int precision);
 #endif

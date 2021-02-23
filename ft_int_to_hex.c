@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_int_to_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tneves <tneves@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gkenzo-s <gkenzo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:52:33 by gkenzo-s          #+#    #+#             */
-/*   Updated: 2021/01/22 15:39:42 by tneves           ###   ########.fr       */
+/*   Updated: 2021/02/05 18:07:26 by gkenzo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	convert_hex(int i)
+static char			convert_hex(int i)
 {
 	if (i == 10)
 		return ('a');
@@ -29,10 +29,18 @@ static char	convert_hex(int i)
 	return (i + 48);
 }
 
-char		*ft_int_to_hex(long long n)
+static long long	negative_tratament(long long n, size_t uint_max)
+{
+	if (n < 0)
+		n = uint_max + n + 1;
+	return (n);
+}
+
+char				*ft_int_to_hex(long long n)
 {
 	char	*c;
 	char	*str;
+	char	*char_temp;
 	size_t	uint_max;
 
 	uint_max = 4294967295;
@@ -41,15 +49,18 @@ char		*ft_int_to_hex(long long n)
 	if (n == 0)
 	{
 		*str = '0';
+		free(c);
 		return (str);
 	}
-	if (n < 0)
-		n = uint_max + n + 1;
+	n = negative_tratament(n, uint_max);
 	while (n > 0)
 	{
 		c[0] = convert_hex(n % 16);
+		char_temp = str;
 		str = ft_strjoin(c, str);
+		free(char_temp);
 		n = n / 16;
 	}
+	free(c);
 	return (str);
 }

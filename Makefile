@@ -20,8 +20,6 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 	  ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c \
 	  ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 	  ft_putnbr_fd.c \
-	  ft_int_to_hex.c ft_maximum.c ft_putchar.c ft_putstr.c \
-	  ft_print_multiple_char.c
 
 BONUS_SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 			ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
@@ -42,20 +40,26 @@ BONUS_OBJ = ft_lstnew.o ft_lstadd_front.o ft_lstsize.o ft_lstlast.o \
 			ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o \
 			ft_lstmap.o
 
+ADDITIONAL_SRC = ft_int_to_hex.c ft_maximum.c ft_putchar.c ft_putstr.c \
+				 ft_print_multiple_char.c ft_pow.c ft_ftoa.c
+
+ADDITIONAL_OBJ = ft_int_to_hex.o ft_maximum.o ft_putchar.o ft_putstr.o \
+				 ft_print_multiple_char.o ft_pow.o ft_ftoa.o
+
 all: $(NAME)
 
-$(NAME): $(SRC)
-	@gcc -Wall -Wextra -Werror -c $(SRC)
-	@ar rc $(NAME) $(OBJ)
+$(NAME): $(SRC) $(ADDITIONAL_SRC)
+	@gcc -Wall -Wextra -Werror -c $(SRC) $(ADDITIONAL_SRC)
+	@ar rc $(NAME) $(OBJ) $(ADDITIONAL_OBJ)
 	@ranlib $(NAME)
 
-bonus: $(SRC) $(BONUS_SRC)
-	@gcc -Wall -Wextra -Werror -c $(SRC) $(BONUS_SRC)
-	@ar rc $(NAME) $(OBJ) $(BONUS_OBJ)
+bonus: $(SRC) $(BONUS_SRC) $(ADDITIONAL_SRC)
+	@gcc -Wall -Wextra -Werror -c $(SRC) $(BONUS_SRC) $(ADDITIONAL_SRC)
+	@ar rc $(NAME) $(OBJ) $(BONUS_OBJ) $(ADDITIONAL_OBJ)
 	@ranlib $(NAME)
 
 clean:
-	@/bin/rm -f $(OBJ) $(BONUS_OBJ)
+	@/bin/rm -f $(OBJ) $(BONUS_OBJ) $(ADDITIONAL_OBJ)
 
 fclean: clean
 	@/bin/rm -f $(NAME)

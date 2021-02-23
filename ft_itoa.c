@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int		pot(int n, int p)
+static int	pot(int n, int p)
 {
 	int nbr;
 
@@ -26,7 +26,7 @@ int		pot(int n, int p)
 	return (nbr);
 }
 
-int		number_of_digits(int n)
+static int	number_of_digits(int n)
 {
 	int ndigit;
 
@@ -39,14 +39,14 @@ int		number_of_digits(int n)
 	return (ndigit);
 }
 
-int		modulo(int n)
+static int	modulo(int n)
 {
 	if (n < 0)
 		n *= -1;
 	return (n);
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	char	*str;
 	char	*ptr;
